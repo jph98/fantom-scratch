@@ -1,0 +1,117 @@
+Presentations (Previous)
+------------------------
+
+JVM: http://zeroturnaround.com/rebellabs/the-adventurous-developers-guide-to-jvm-languages-fantom/
+Fantom: http://www.slideshare.net/katoxidl/fantom-programming-language-for-jvm-clr-and-javascript
+
+Talk Structure
+--------------
+
+Container Language Ecosystem - JVM and CLI (2 slides)
+Details of the language (5 slides)
+Some Examples (5 slides/source examples)
+
+Ecosystem
+---------
+
+Aspects:
+* Age of the language
+* Paradigms supported
+* Community size approx
+* Large scale project efforts in language
+
+Based on languages:
+* JRuby, Jython
+* Scala, Clojure, Groovy
+* Javascript through the Nashorn engine in JDK 8
+* Kotlin, Ceylon, 
+* Fortress (Fortran)
+* Jelly (Executable XML)
+* Free Pascal
+* JLog (Prolog)
+* Rakudo Perl (Perl)
+* JGo
+* Bigloo (Scheme)
+* Jacl (TCL)
+* CAL (Haskell)
+* Mirah (Ruby)
+* Quercus (PHP 5)
+
+Based on concepts:
+* Ateji (Concurrent oriented)
+* Fantom (.NET and JVM)
+
+CLR also has a similar approach:
+* IronPython and IronRuby
+* Boo (Python)
+* L# (Lisp)
+* P# (Prolog)
+* Oxygene (Object Pascal)
+* Phalanger (PHP) 
+* IKVM.NET (Java for MONO)
+
+Mono is the cross-platform implementation of the CLR on Linux
+* F# is open-source and provided to compile for that
+
+Rationale
+---------
+
+To cross compile to the JVM and the CLR
+Intermediate fcode
+It's Java, .NET, Ruby and JS like...
+Focus on elegant API's, Java IO is compressed into four classes
+Modular through the provisioning of the pod concept: pod::type.slot
+
+Tools
+-----
+
+* REPL, pod structure, scripts
+* FWT (SWT derivative), WebMod (Servlet base class)
+* Online Playground - http://www.fanzy.net/
+* Docs - http://fantom.org/doc/docIntro/index.html
+* Pod Repository - http://repo.status302.com/fanr/
+
+Details
+-------
+
+Cross compiles to .NET, Java and Javascript
+Literals match each of those three languages
+
+String Interpolation: "$x + $y = ${x+y}"
+Declare: Str s := "hello"
+
+Accessors: class Person {
+  Str name
+  Int age
+}
+
+then... 
+
+	override setter: Int age { set { checkAge(val); &age = it } }
+	default args: Int yearsToRetirement(Int retire := 65) { return retire - age }
+
+virtual and override, mixin support
+
+Closures: 10.times |i| { echo(i) }
+files = files.sort |a, b| { a.modified <=> b.modified }
+
+Let's do type checking with person.name or not with person -> name
+
+Nullable with Str?
+
+Use const to mark fields as immutable
+
+Concurrency is provided with an actor model
+
+POD: build.fan with a sub-folder called fan containing the sources Main.fan
+
+	class Build : build::BuildPod
+	{
+	  new make()
+	  {
+	    podName = "hello"
+	    summary = "hello world pod"
+	    depends = ["sys 1.0"]
+	    srcDirs = [`fan/`]
+	  }
+	}
